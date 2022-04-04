@@ -15,11 +15,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.(s[ac]|c)ss$/i,
@@ -28,18 +28,19 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'sass-loader',
-        ]      
-      }
-    ]
+        ],
+      },
+    ],
   },
-  plugins: [
-    new MiniCssExtractPlugin()
-  ],
+  plugins: [new MiniCssExtractPlugin()],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   devtool: 'source-map',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist')
+      directory: path.join(__dirname, 'dist'),
     },
-    hot: true
-  }
+    hot: true,
+  },
 };
